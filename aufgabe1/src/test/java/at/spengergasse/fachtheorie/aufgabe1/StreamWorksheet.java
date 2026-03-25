@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * ══════════════════════════════════════════════════════════════
@@ -42,7 +43,10 @@ public class StreamWorksheet {
     // Übung 1: Extrahiere alle Buchtitel aus den Ausleihen
     // Verwende: .stream().map(...).toList()
     public List<String> exercise01_getBookTitles(List<Loan> loans) {
-        throw new UnsupportedOperationException("TODO");
+        // Loan -> Loan.getBook() -> Book.getTitle()
+        Stream<String> titlesStream = loans.stream().map(loan -> loan.getBook().getTitle());
+        List<String> titlesList = titlesStream.toList();
+        return titlesList;
     }
 
     // Übung 2: Filtere alle zurückgegebenen Ausleihen (returnDate ist NICHT null)

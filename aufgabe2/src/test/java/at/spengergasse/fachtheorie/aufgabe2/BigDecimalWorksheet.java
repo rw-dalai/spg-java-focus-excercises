@@ -9,7 +9,7 @@ import java.math.RoundingMode;
  * ══════════════════════════════════════════════════════════════
  *
  *  Erstellen:    new BigDecimal("19.50")  |  BigDecimal.valueOf(10L)
- *                NIEMALS: new BigDecimal(19.50) → Rundungsfehler!
+ *                NIEMALS: new BigDecimal(19.50) -> Rundungsfehler!
  *  ──────────────────────────────────────────────────────────
  *  Rechnen:      a.add(b)  |  a.subtract(b)  |  a.multiply(b)
  *                a.divide(b, scale, RoundingMode.HALF_UP)

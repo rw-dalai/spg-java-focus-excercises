@@ -23,7 +23,7 @@ class StreamWorksheetTests {
     @Autowired private BookRepository bookRepository;
     @Autowired private MemberRepository memberRepository;
     @Autowired private LoanRepository loanRepository;
-    @Autowired private EntityManager em;
+    @Autowired private EntityManager entityManager;
 
     private StreamWorksheet worksheet;
     private List<Loan> allLoans;
@@ -40,14 +40,24 @@ class StreamWorksheetTests {
         var hobbitBook = bookRepository.save(hobbitBook());
         var historyBook = bookRepository.save(historyBook());
 
-        loanRepository.save(activeLoan(javaBook, anna, LocalDate.of(2025, 1, 10)));
-        loanRepository.save(returnedLoan(hobbitBook, karl,
-                LocalDate.of(2025, 1, 5), LocalDate.of(2025, 1, 20), new BigDecimal("27.00")));
-        loanRepository.save(returnedLoan(historyBook, anna,
-                LocalDate.of(2025, 2, 1), LocalDate.of(2025, 2, 15), new BigDecimal("42.00")));
+        loanRepository.save(
+            activeLoan(javaBook, anna,
+                LocalDate.of(2025, 1, 10)));
 
-        em.flush();
-        em.clear();
+        loanRepository.save(
+            returnedLoan(hobbitBook, karl,
+                LocalDate.of(2025, 1, 5),
+                LocalDate.of(2025, 1, 20),
+                new BigDecimal("27.00")));
+
+        loanRepository.save(returnedLoan(
+            historyBook, anna,
+            LocalDate.of(2025, 2, 1),
+            LocalDate.of(2025, 2, 15),
+            new BigDecimal("42.00")));
+
+        entityManager.flush();
+        entityManager.clear();
 
         allLoans = loanRepository.findAll();
         allBooks = bookRepository.findAll();
@@ -95,15 +105,15 @@ class StreamWorksheetTests {
     @Test
     void exercise06_getMaxFee() {
         assertThat(worksheet.exercise06_getMaxFee(allLoans))
-                .isPresent()
-                .get().satisfies(fee -> assertThat(fee).isEqualByComparingTo(new BigDecimal("42.00")));
+            .isPresent()
+            .get().satisfies(fee -> assertThat(fee).isEqualByComparingTo(new BigDecimal("42.00")));
     }
 
     @Test
     void exercise07_getMinPricePerDay() {
         assertThat(worksheet.exercise07_getMinPricePerDay(allLoans))
-                .isPresent()
-                .get().satisfies(price -> assertThat(price).isEqualByComparingTo(new BigDecimal("1.80")));
+            .isPresent()
+            .get().satisfies(price -> assertThat(price).isEqualByComparingTo(new BigDecimal("1.80")));
     }
 
     @Test

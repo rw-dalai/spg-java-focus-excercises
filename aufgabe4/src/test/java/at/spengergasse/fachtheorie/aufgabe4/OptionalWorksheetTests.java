@@ -102,7 +102,7 @@ class OptionalWorksheetTests {
 
     @Test
     void exercise05_findExpensiveBook_aboveMin() {
-        // javaBook has pricePerDay 2.50, minPrice 2.00 → present
+        // javaBook has pricePerDay 2.50, minPrice 2.00 -> present
         var book = worksheet.exercise05_findExpensiveBook(javaBook.getId(), bookRepository, new BigDecimal("2.00"));
         assertThat(book).isPresent();
         assertThat(book.get().getTitle()).isEqualTo("Effective Java");
@@ -110,7 +110,7 @@ class OptionalWorksheetTests {
 
     @Test
     void exercise05_findExpensiveBook_belowMin() {
-        // javaBook has pricePerDay 2.50, minPrice 3.00 → empty
+        // javaBook has pricePerDay 2.50, minPrice 3.00 -> empty
         var book = worksheet.exercise05_findExpensiveBook(javaBook.getId(), bookRepository, new BigDecimal("3.00"));
         assertThat(book).isEmpty();
     }

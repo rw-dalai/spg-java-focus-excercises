@@ -16,14 +16,14 @@ import java.util.Optional;
  *  ──────────────────────────────────────────────────────────
  *  Erstellen:    Optional.of(value)  |  Optional.ofNullable(value)  |  Optional.empty()
  *  ──────────────────────────────────────────────────────────
- *  Auspacken:    .orElse(default)           → T (Fallback-Wert)
- *                .orElseThrow(() -> ex)     → T (Exception wenn leer)
- *                .orElseThrow()             → T (NoSuchElementException)
+ *  Auspacken:   .orElse(default)           -> T (Fallback-Wert)
+ *               .orElseThrow(() -> ex)     -> T (Exception wenn leer)
+ *               .orElseThrow()             -> T (NoSuchElementException)
  *  ──────────────────────────────────────────────────────────
  *  Prüfen:          .isPresent()  |  .isEmpty()
- *  Transformieren: .map(x -> y)  |  .filter(x -> bool)
+ *  Transformieren:  .map(x -> y)  |  .filter(x -> bool)
  *  ──────────────────────────────────────────────────────────
- *  Repository:   repo.findById(id) → Optional<T>
+ *  Repository:   repo.findById(id) -> Optional<T>
  */
 public class OptionalWorksheet {
 
