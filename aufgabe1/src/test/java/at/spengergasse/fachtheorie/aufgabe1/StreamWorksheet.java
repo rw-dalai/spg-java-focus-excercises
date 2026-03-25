@@ -43,7 +43,6 @@ public class StreamWorksheet {
     // Übung 1: Extrahiere alle Buchtitel aus den Ausleihen
     // Verwende: .stream().map(...).toList()
     public List<String> exercise01_getBookTitles(List<Loan> loans) {
-        // Loan -> Loan.getBook() -> Book.getTitle()
         Stream<String> titlesStream = loans.stream().map(loan -> loan.getBook().getTitle());
         List<String> titlesList = titlesStream.toList();
         return titlesList;
@@ -52,7 +51,7 @@ public class StreamWorksheet {
     // Übung 2: Filtere alle zurückgegebenen Ausleihen (returnDate ist NICHT null)
     // Verwende: .stream().filter(...).toList()
     public List<Loan> exercise02_getReturnedLoans(List<Loan> loans) {
-        throw new UnsupportedOperationException("TODO");
+        return loans.stream().filter(loan -> loan.getReturnDate() != null).toList();
     }
 
     // Übung 3: Zähle wie viele Ausleihen ein bestimmtes Genre haben
@@ -103,7 +102,7 @@ public class StreamWorksheet {
     // ══════════════════════════════════════════════════════════
 
     // Übung 11: Finde die E-Mails aller Mitglieder mit aktiven Ausleihen
-    // Verwende: .filter(l -> l.getReturnDate() == null).map(l -> l.getMember().getEmail()).toList()
+    // Verwende: .filter(..).map(..).toList()
     public List<String> exercise11_getActiveLoanEmails(List<Loan> loans) {
         throw new UnsupportedOperationException("TODO");
     }
